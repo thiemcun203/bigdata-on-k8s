@@ -6,21 +6,12 @@ spec:
   containers:
   - name: python
     image: python:3.9
-    command: ["/bin/bash", "-c"]
-    args:
-      - |
-        pip install confluent-kafka psycopg2 &&
-        cp -r /data/* /scripts/ &&
+    command: ["/bin/bash", "-c", "--"]
+    args: ["pip install confluent-kafka psycopg2 && while true; do sleep 30; done;"]
     volumeMounts:
     - name: kafka-script-volume
       mountPath: /scripts
-    - name: source-code
-      mountPath: /data
   restartPolicy: Never
   volumes:
   - name: kafka-script-volume
     emptyDir: {}
-  - name: source-code
-    hostPath:
-      path: /home/pc/Documents/big-data-on-k8s/big-data-source/kafka/producer
-      type: Directory

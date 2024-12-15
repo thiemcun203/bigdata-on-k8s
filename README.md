@@ -97,9 +97,8 @@ helm install kafka oci://registry-1.docker.io/bitnamicharts/kafka \
     --values kafka/kafka_values.yaml -n default
 ```
 
-Retrieve Kafka client password:
 ```bash
-password=$(kubectl get secret kafkadev-user-passwords --namespace default -o jsonpath='{.data.client-passwords}' | base64 --decode)
+password=$(kubectl get secret kafka-user-passwords --namespace default -o jsonpath='{.data.client-passwords}' | base64 --decode)
 password=$(echo "$password" | awk -F ',' '{print $1}')
 echo "$password"
 ```

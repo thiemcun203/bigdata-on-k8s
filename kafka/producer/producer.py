@@ -6,10 +6,10 @@ from confluent_kafka import Producer
 # Kafka producer configuration
 kafka_config = {
     'bootstrap.servers': 'kafka-controller-headless:9092',
-    'security.protocol': 'SASL_PLAINTEXT',
-    'sasl.mechanisms': 'SCRAM-SHA-256',
-    'sasl.username': 'user1',
-    'sasl.password': 'N4yMeyCkX0',
+    'security.protocol': 'PLAINTEXT',
+    # 'sasl.mechanisms': 'SCRAM-SHA-256',
+    # 'sasl.username': 'user1',
+    # 'sasl.password': 'deyUxR0xuZ',
 }
 
 producer = Producer(kafka_config)

@@ -28,12 +28,13 @@ spark = SparkSession.builder \
 # Kafka configuration
 kafka_options = {
     "kafka.bootstrap.servers": "kafka-controller-headless:9092",
-    "kafka.sasl.mechanism": "SCRAM-SHA-256",
-    "kafka.security.protocol": "SASL_PLAINTEXT",
-    "kafka.sasl.jaas.config": """org.apache.kafka.common.security.scram.ScramLoginModule required username="user1" password="N4yMeyCkX0";""",
+    # "kafka.sasl.mechanism": "SCRAM-SHA-256",
+    "kafka.security.protocol": "PLAINTEXT",
+    # "kafka.sasl.jaas.config": """org.apache.kafka.common.security.scram.ScramLoginModule required username="user1" password="LKcBAMCslM";""",
     "subscribe": "test",
     "startingOffsets": "latest",#"earliest",
-    "maxOffsetsPerTrigger": "100"
+    "maxOffsetsPerTrigger": "100",
+    "failOnDataLoss": "false"
 }
 
 # Read data from Kafka
