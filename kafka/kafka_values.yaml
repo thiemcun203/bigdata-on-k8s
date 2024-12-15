@@ -1,0 +1,13 @@
+volumePermissions:
+  enable: true
+
+
+externalAccess:
+  enabled: true
+  controller:
+    service:
+      type: NodePort
+      nodePorts:
+        - 30090
+        - 30091
+        - 30092

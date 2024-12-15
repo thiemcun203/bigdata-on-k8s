@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: python-kafka-client
+spec:
+  containers:
+  - name: python
+    image: python:3.9
+    command: ["/bin/bash", "-c"]
+    args:
+      - |
+        pip install confluent-kafka psycopg2 &&
+        cp -r /data/* /scripts/ &&
+    volumeMounts:
+    - name: kafka-script-volume
+      mountPath: /scripts
+    - name: source-code
+      mountPath: /data
+  restartPolicy: Never
+  volumes:
+  - name: kafka-script-volume
+    emptyDir: {}
+  - name: source-code
+    hostPath:
+      path: /home/pc/Documents/big-data-on-k8s/big-data-source/kafka/producer
+      type: Directory
