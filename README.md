@@ -69,7 +69,8 @@ hdfs dfs -chmod -R 775 /user/data/banking_data/
 
 To delete HDFS files:
 ```bash
-kubectl exec -it my-hdfs-namenode-0 -- hdfs dfs -rm -r -f /user/data/banking_data
+kubectl exec -it my-hdfs-namenode-0 -- hdfs dfs -rm -r -f /user/data/banking_data/transactions
+kubectl exec -it my-hdfs-namenode-0 -- hdfs dfs -rm -r -f /user/data/banking_data/checkpoints/transactions/
 ```
 
 ### 2. PostgreSQL Setup
@@ -206,6 +207,7 @@ helm install redis oci://registry-1.docker.io/bitnamicharts/redis
 Delete all Redis keys (replace password with the one provided in helm output):
 ```bash
 kubectl exec -it redis-master-0 -- sh -c "redis-cli -a <password> --scan | xargs -L 100 redis-cli -a <password> DEL"
+kubectl exec -it redis-master-0 -- sh -c "redis-cli -a xts7qvg3yU --scan | xargs -L 100 redis-cli -a xts7qvg3yU DEL"
 ```
 
 ### 7. Superset Setup
